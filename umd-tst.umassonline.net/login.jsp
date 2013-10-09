@@ -12,6 +12,38 @@
    
 <%@ include file="/webapis/ui/cookie-disclosure-login.jspf"%>
    
+<% 
+	String targetElement = "bb-session-key";
+	String targetHeader = "referer";
+	String targetUserAttribute = "UserId: {unset id}";
+	String targetLocation = "https://login.umassd.edu/logout";
+	String targetReferer = "https://umd-tst.umassonline.net";
+	
+	java.util.Enumeration enuR = request.getAttributeNames();
+	java.util.Enumeration enuH = request.getHeaderNames();
+	
+	while(enuR.hasMoreElements()) {
+        String elementName = (String)enuR.nextElement();	
+		if (elementName == targetElement) {		
+			Object elementValue = request.getAttribute(targetElement);
+			
+			while(enuH.hasMoreElements()) {
+				String headerName = (String)enuH.nextElement();
+				String headerValue = request.getHeader(headerName);
+				
+				if (headerName.toLowerCase().equals(targetHeader)) {
+					if (headerValue.length() > 7) {
+						if (elementValue.toString().contains(targetUserAttribute) && headerValue.contains(targetReferer)) {
+							response.setStatus(response.SC_MOVED_TEMPORARILY);
+							response.setHeader("Location", targetLocation);
+						}
+					}
+				}
+			}
+		}
+	}	
+%>
+   
 <bbNG:cssBlock>
 <style type="text/css">
   #loginFormList li label {
@@ -20,30 +52,7 @@
 </style>
 </bbNG:cssBlock>
    
-  <bbNG:jsBlock>
-    <script type="text/javascript">
-      function loadLoginPage()
-      {
-    	  if ( top != self )
-    	  {
-    		  top.location.replace( self.location.href );
-    		}
-    	  if(document.forms.login.user_id != undefined)
-    		{
-    		  document.forms.login.user_id.focus();
-    		}
-    	  setTimeout("triggerScreenreaderAlert()", 500);
-      }
-      
-      function triggerScreenreaderAlert()
-      {
-    	if ( document.getElementById( 'loginErrorMessage' ) )
-  	    {
-    	  $( 'loginErrorMessage' ).update( $('loginErrorMessage').innerHTML );
-  	    }
-      }
-    </script>
-	
+<bbNG:jsBlock>	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript">		
 		jQuery.noConflict();
