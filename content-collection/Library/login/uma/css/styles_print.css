@@ -1,0 +1,24 @@
+@import url('/css/styles.css');
+
+body { background-color: rgb(255,255,255); }
+
+div.main { width: 600px; float: left; border: 0px; margin: 0px; } 
+
+div.top { display: none; }
+div.nav { display: none; } 
+div.head { width: 100%; /* display: none; */ }
+
+div.content { width: 100%; padding: 5px; overflow: hidden; text-align: left; background-color: rgb(255,255,255); }
+div.content td.fullcol { vertical-align: top; padding: 0px; background-color: rgb(255,255,255); }
+div.content td.fullcol div.head { width: 100%; }
+div.content td.left2col { vertical-align: top; padding: 0px; background-color: rgb(255,255,255); }
+div.content td.left2col div.head { width: 100%; }
+div.content td.leftcol { display: none; }
+div.content td.midcol { vertical-align: top; padding: 0px; background-color: rgb(255,255,255); }
+div.content td.midcol div.head { width: 100%; }
+div.content td.rightcol { display: none; }
+div.content div.pagelinks { display: none; }
+div.content div.pagelinksprint { text-align: right; margin-top: 30px; display: inline;}
+div.landingheader { display: none; }
+
+div.footer { display: none; }
