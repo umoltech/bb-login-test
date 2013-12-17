@@ -11,12 +11,15 @@
 	<%@ include file="/webapis/ui/cookie-disclosure-login.jspf"%>
 	   
 	<bbNG:jsBlock>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="text/javascript">
-
+			jQuery().ready( function() {	
+				jQuery.noConflict();
+				
+				jQuery('.forgot').html('Forgot your password? Email <a href="mailto:techsupport@donahue.umassp.edu">techsupport@donahue.umassp.edu</a> for help');
+			});
 		</script>
 	</bbNG:jsBlock>
-
-
 
 	<bbNG:cssBlock>
 		<style type="text/css">
@@ -71,10 +74,18 @@
 				text-transform: none;
 			}
 			
+			#loginBox li .forgot {
+				display: block;
+				width: 200px;
+				float: left;
+			}
+			
 			#loginBox .forgot a {
 				color: #254061;
+				/*
 				font-weight: bold;
 				font-size: 120%;
+				*/
 				border: 0;
 			}
 			
@@ -130,7 +141,6 @@
 						</div>
 						<div id="loginLogo">
 							<img src="/bbcswebdav/library/login/uls/digital-connectors-program.gif" alt="Digital Connectors Program" />
-							<p><a href="mailto:techsupport@donahue.umassp.edu">techsupport@donahue.umassp.edu</a></p>
 						</div>
 					</div>
 					

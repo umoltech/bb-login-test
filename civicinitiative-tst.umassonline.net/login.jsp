@@ -11,8 +11,13 @@
 	<%@ include file="/webapis/ui/cookie-disclosure-login.jspf"%>
 	   
 	<bbNG:jsBlock>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="text/javascript">
-
+			jQuery().ready( function() {	
+				jQuery.noConflict();
+				
+				jQuery('.forgot').html('Forgot your password? Email <a href="mailto:techsupport@donahue.umassp.edu">techsupport@donahue.umassp.edu</a> for help');
+			});
 		</script>
 	</bbNG:jsBlock>
 
@@ -92,10 +97,17 @@
 				text-transform: none;
 			}
 			
+			#loginBodyContainer #loginBox li .forgot {
+				display: block;
+				width: 220px;
+				float: left;
+			}
+			
 			#loginBodyContainer #loginBox .forgot a {
 				color: #254061;
-				font-weight: bold;
+				/*font-weight: bold;
 				font-size: 120%;
+				*/
 				border: 0;
 			}
 			
