@@ -79,18 +79,16 @@
                 
                 <div id="bblearn-popup" class="popup" style="height:285px">
                   <div id="bblearn-popup-msg">
-		  <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
-		    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
-		    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
-		    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
-
-		  
-		                    </div>
-                  <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
+		            <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
+		            <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
+		            <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
+		            <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
+                    <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
+		          </div>
                   <p><a href="javascript:bblearn_close_survey_popup()"> > Remind me later </a></p>
                 </div>
                         
-                <form accept-charset="UTF-8" id="bblearn-loginform" method="post"">
+                <form accept-charset="UTF-8" id="bblearn-loginform" method="post">
                   <input type="hidden" value="login" name="action" />                              
                   <input type="hidden" value="" name="new_loc" />
                   <table>
@@ -111,7 +109,7 @@
                         <td colspan="2">
                           <p><a href="https://www.oit.umass.edu/support/accounts/understand-your-netid-password" target="_blank">About Your NetID and Password</a></p>
                           <p><a href="https://www.oit.umass.edu/support/accounts/understand-your-netid-password#Your%20OIT%20Account%20Password" target="_blank">Forgot Your Password?</a></p>
-                          <p>Need to access Blackboard Vista? <a href="/amherstvista.cfm">Blackboard Vista Login</a></p>
+                          <p>Need to access Blackboard Vista? <a href="https://login.umassonline.net/amherstvista.cfm">Blackboard Vista Login</a></p>
                         </td>
                       </tr>
                     </tbody>
@@ -121,15 +119,6 @@
             </td>
             <td width="55%" valign="top">
 				<loginUI:systemAnnouncements maxItems="5" />
-				<!--
-				<div class="announcement">
-					<h3>Service Window Every Wednesday 4-7AM</h3>
-					<p>There will be a Blackboard Learn servicing and maintenance window held every 
-					Wednesday from 4-7AM ET. During this time, Blackboard Learn may not be available.</p>
-					<p>Thank you,<br />
-					The Blackboard Learn LMS Administrators</p>
-				</div>
-				-->
             </td>
           </tr>
         </tbody>
@@ -184,6 +173,11 @@
 
 <bbNG:cssBlock>
 <link rel="stylesheet" type="text/css" href="/bbcswebdav/library/login/uma/css/styles.css" />
+<style type="text/css">
+tr:nth-child(2n) {
+    background-color: transparent;
+}
+</style>
 </bbNG:cssBlock>
 
 <bbNG:jsBlock>
@@ -198,6 +192,7 @@
 			password: '#bblearn-password',
 			start_now: '#surveyurl',
 			popup: '#bblearn-popup',
+			popupmsg: '#bblearn-popup-msg',
 			submit: '#edit-submit',
 			server: 'owl-umacontedonlinecourseeval',
 			datasrc: 'OwlUMAContEdOnlineCourseEval',
@@ -209,26 +204,38 @@
 		prefix: 'uma_'
 	};
   
-	function openCourseEvalPopUp(jsonpData) {
-		if(jsonpData[0].length < 3) {
-			bblearn_submit_form();
-		}
-
-		var numToComplete = jsonpData[0].numsurveys;
-		var url = jsonpData[0].surveyurl;
-
-		if(isNaN(numToComplete) || url.length < 1) {
+	function bblearn_open_course_eval_popup(jsonpData) {
+		if (!jsonpData) {
 			return bblearn_submit_form();
+		} else {
+			if (jsonpData[0].length < 3) {
+				bblearn_submit_form();
+			}
+	
+			var numToComplete = jsonpData[0].numsurveys;
+			var url = jsonpData[0].surveyurl;
+			var popupnote = jsonpData[0].popupnote;
+			
+			if( isNaN(numToComplete) || url.length < 1) {
+				return bblearn_submit_form();
+			}
+	
+			if (numToComplete < 1) {
+				return bblearn_submit_form();
+			}
+	
+			jQuery(bblearn.elements.surveyurl).attr('href', url);
+			
+			jQuery(bblearn.elements.start_now).removeAttr('onclick');
+			
+            if (popupnote && popupnote.length > 0) {
+				jQuery(bblearn.elements.popupmsg).html(popupnote);
+			}
+			
+            jQuery(bblearn.elements.popup).show();  
+			
+            return false;
 		}
-
-		if(numToComplete < 1) {
-			return bblearn_submit_form();
-		}
-
-		jQuery(bblearn.elements.surveyurl).attr('href', url);
-		jQuery(bblearn.elements.popup).show();  
-
-		return false;  
 	}
 
 	function bblearn_close_survey_popup() {
@@ -269,7 +276,7 @@
 	}
 
 	function bblearn_check_surveys(id, pw) {
-		if(bblearn.elements.surveychecked) {
+		if (bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
 
@@ -281,16 +288,25 @@
 				datasrc: bblearn.elements.datasrc,
 				fxn: bblearn.elements.fxn,
 				Login: id,
-				Password: pw,
-				formatjsonp: 1
+				password: pw,
+				formatjsonp: 1,
+				Mode:'1',
+				callsrc:'bblean'
 			},
 			dataType: "jsonp",
+			async: false,
 			timeout: 5000,
 			jsonp: false,
-			jsonpCallback: "openCourseEvalPopUp",
-			error: function() {
-				bblearn_submit_form();
-			}      
+			sccess: function(data){
+              bblearn_open_course_eval_popup(data);
+            },
+			error: function (xhr, ajaxOptions, thrownError) {
+				if (xhr.status==200) {
+					//do nothing
+				} else {
+					bblearn_submit_form();
+				}
+			}              
 		});
 	}
   
@@ -311,12 +327,16 @@
 
 			return false;
 		});
+		
+		jQuery(bblearn.elements.start_now).live('click', function() {
+			return bblearn_close_survey_popup();
+		});
 	});
 </script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-793538-6']);
+  _gaq.push(['_setAccount', 'UA-793538-14']);
   _gaq.push(['_trackPageview']);
 
   (function() {
