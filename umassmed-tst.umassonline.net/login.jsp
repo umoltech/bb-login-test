@@ -45,7 +45,8 @@
 	/* #loginAnnouncements { padding-top: 5px; } */
 	#loginAnnouncements { padding-top: 0; }
 	#loginAnnouncements ul { width: 388px; border: 1px solid #999999; } /* 840px */
-	#loginAnnouncements li { background-color: #FFFFCC; margin-bottom: 0; }
+	#loginAnnouncements li { background-color: #FFFFCC; color: #000000; margin-bottom: 0; }
+	#loginAnnouncements ul li strong:first-child { font-family: inherit; }
 	.login-page #copyright { background-color: #E5E5E5; bottom: 0; margin-top: 0; position: relative; padding-bottom: 30px; }
 	#loginAnnouncementAlert { background-color: #FFFF66; padding: 10px 20px; margin-bottom: 10px; color: red; font-size: 125%; font-weight: bold; text-align: center; }
 </style>
@@ -126,18 +127,26 @@
 				</div>
 				</form>
 			</div>
-			<!--
+			<%--
 			<div class="loginBlock loginAlert">
 				<h3>Service Unavailable</h3>
 				<p>Blackboard Vista is currently unavailable due to system issues. Please contact your local help desk with any questions.</p>
 				<p>Last Updated: Aug 29, 2013 7:40 AM</p>
 			</div>
+			--%>
 			<div class="loginBlock" style="background-color:#FFFFCC">
+				<%--
 				<h3>Service Announcement</h3>
-				<p>Blackboard Vista will be unavailable on Wednesday, August 28th 
-				from 4:00AM - 7:00AM for a system servicing. Please contact your local help desk with any questions.</p>
+				<p>Blackboard Vista will be unavailable on Sunday, October 26th 
+				from 4:00AM - 8:00AM for a system servicing. Please contact your local 
+				help desk with any questions.</p>
+				<p>&nbsp;</p>
+				--%>
+				<h3>Service Window Every Wednesday 4am - 7am</h3>
+				<p>There will be a Blackboard Vista servicing and maintenance window held every 
+				Wednesday from 4am to 7am ET. During this time, Blackboard Vista may not be available.</p>
+				<p>Thank you,<br />The Blackboard Vista LMS Administrators</p>
 			</div>
-			-->
           </div>
 		  <div id="loginBoxFooter">
 		    <div class="loginBlock">
