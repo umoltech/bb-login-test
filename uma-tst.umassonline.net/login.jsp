@@ -79,12 +79,14 @@
                 
                 <div id="bblearn-popup" class="popup" style="height:285px">
                   <div id="bblearn-popup-msg">
-		            <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
-		            <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
-		            <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
-		            <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
-                    <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
-		          </div>
+		  <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
+		    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
+		    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
+		    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
+        <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
+		  
+		                    </div>
+                  
                   <p><a href="javascript:bblearn_close_survey_popup()"> > Remind me later </a></p>
                 </div>
                         
@@ -160,8 +162,8 @@
       </div>
       <div class="footsites">
         <a href="http://www.umass.edu">UMass Amherst</a> |
-        <a href="http://www.umb.edu"">UMass Boston</a> |
-        <a href="http://www.umassd.edu"">UMass Dartmouth</a> |
+        <a href="http://www.umb.edu">UMass Boston</a> |
+        <a href="http://www.umassd.edu">UMass Dartmouth</a> |
         <a href="http://www.uml.edu">UMass Lowell</a> |
         <a href="http://www.umassmed.edu">UMass Worcester</a> |
         <a href="http://www.umassclub.com">UMass Club</a> |
@@ -204,11 +206,11 @@ tr:nth-child(2n) {
 		prefix: 'uma_'
 	};
   
-	function bblearn_open_course_eval_popup(jsonpData) {
-		if (!jsonpData) {
+	function openCourseEvalPopUp(jsonpData) {
+		if(!jsonpData) {
 			return bblearn_submit_form();
 		} else {
-			if (jsonpData[0].length < 3) {
+			if(jsonpData[0].length < 3) {
 				bblearn_submit_form();
 			}
 	
@@ -216,25 +218,23 @@ tr:nth-child(2n) {
 			var url = jsonpData[0].surveyurl;
 			var popupnote = jsonpData[0].popupnote;
 			
-			if( isNaN(numToComplete) || url.length < 1) {
+			if(isNaN(numToComplete) || url.length < 1) {
 				return bblearn_submit_form();
 			}
 	
-			if (numToComplete < 1) {
+			if(numToComplete < 1) {
 				return bblearn_submit_form();
 			}
 	
 			jQuery(bblearn.elements.surveyurl).attr('href', url);
 			
-			jQuery(bblearn.elements.start_now).removeAttr('onclick');
-			
-            if (popupnote && popupnote.length > 0) {
+      if(popupnote && popupnote.length > 0) {
 				jQuery(bblearn.elements.popupmsg).html(popupnote);
 			}
+      
+			jQuery(bblearn.elements.popup).show();  
 			
-            jQuery(bblearn.elements.popup).show();  
-			
-            return false;
+      return false;
 		}
 	}
 
@@ -276,7 +276,7 @@ tr:nth-child(2n) {
 	}
 
 	function bblearn_check_surveys(id, pw) {
-		if (bblearn.elements.surveychecked) {
+		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
 
@@ -291,17 +291,17 @@ tr:nth-child(2n) {
 				password: pw,
 				formatjsonp: 1,
 				Mode:'1',
-				callsrc:'bblean'
+				callsrc:'bblearn'
 			},
 			dataType: "jsonp",
 			async: false,
 			timeout: 5000,
 			jsonp: false,
-			sccess: function(data){
-              bblearn_open_course_eval_popup(data);
-            },
+			success: function(data){
+        openCourseEvalPopUp(data);
+      },
 			error: function (xhr, ajaxOptions, thrownError) {
-				if (xhr.status==200) {
+				if(xhr.status==200){
 					//do nothing
 				} else {
 					bblearn_submit_form();
@@ -326,10 +326,6 @@ tr:nth-child(2n) {
 			bblearn_check_login_form();
 
 			return false;
-		});
-		
-		jQuery(bblearn.elements.start_now).live('click', function() {
-			return bblearn_close_survey_popup();
 		});
 	});
 </script>
