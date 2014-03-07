@@ -77,7 +77,7 @@
                 <h3>Blackboard Learn Login:</h3>
 				<loginUI:errorMessage />
                 
-                <div id="bblearn-popup" class="popup" style="height:285px">
+                <div id="bblearn-popup" class="popup">
                   <div id="bblearn-popup-msg">
 		  <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
 		    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
@@ -162,8 +162,8 @@
       </div>
       <div class="footsites">
         <a href="http://www.umass.edu">UMass Amherst</a> |
-        <a href="http://www.umb.edu">UMass Boston</a> |
-        <a href="http://www.umassd.edu">UMass Dartmouth</a> |
+        <a href="http://www.umb.edu"">UMass Boston</a> |
+        <a href="http://www.umassd.edu"">UMass Dartmouth</a> |
         <a href="http://www.uml.edu">UMass Lowell</a> |
         <a href="http://www.umassmed.edu">UMass Worcester</a> |
         <a href="http://www.umassclub.com">UMass Club</a> |
@@ -178,6 +178,9 @@
 <style type="text/css">
 tr:nth-child(2n) {
     background-color: transparent;
+}
+div.popup {
+	height: 380px;
 }
 </style>
 </bbNG:cssBlock>
@@ -228,8 +231,9 @@ tr:nth-child(2n) {
 	
 			jQuery(bblearn.elements.surveyurl).attr('href', url);
 			
-      if(popupnote && popupnote.length > 0) {
+			if(popupnote && popupnote.length > 0) {
 				jQuery(bblearn.elements.popupmsg).html(popupnote);
+				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_close_survey_popup()");
 			}
       
 			jQuery(bblearn.elements.popup).show();  
