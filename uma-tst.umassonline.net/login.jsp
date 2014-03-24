@@ -233,13 +233,21 @@ div.popup {
 			
 			if(popupnote && popupnote.length > 0) {
 				jQuery(bblearn.elements.popupmsg).html(popupnote);
-				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_close_survey_popup()");
+				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_delayed_submit()");
 			}
       
 			jQuery(bblearn.elements.popup).show();  
 			
-      return false;
+		return false;
 		}
+	}
+	
+	var timeoutID = null;
+	function bblearn_delayed_submit() {
+		if (timeoutID) {
+			window.clearTimeout(timeoutID);
+		}
+		timeoutID = window.setTimeout(bblearn_close_survey_popup, 2000);
 	}
 
 	function bblearn_close_survey_popup() {
