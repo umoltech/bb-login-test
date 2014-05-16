@@ -199,12 +199,12 @@ div.popup {
 			popup: '#bblearn-popup',
 			popupmsg: '#bblearn-popup-msg',
 			submit: '#edit-submit',
-			server: 'owl-umacontedonlinecourseeval',
-			datasrc: 'OwlUMAContEdOnlineCourseEval',
+			server: 'owl-umolcetest',
+			datasrc: 'OwlUMOLCETest',
 			fxn: 'cevallogin',
 			surveyurl: '#bblearn-survey-url',
 			surveychecked: false,
-			owlUrl: 'https://owl3.oit.umass.edu/owlj/servlet/OwlPreLogin'
+			owlUrl: 'https://owlstage.cs.umass.edu/owlj/servlet/OwlPreLogin'
 		},
 		prefix: 'uma_'
 	};
