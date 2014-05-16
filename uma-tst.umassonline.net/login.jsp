@@ -162,8 +162,8 @@
       </div>
       <div class="footsites">
         <a href="http://www.umass.edu">UMass Amherst</a> |
-        <a href="http://www.umb.edu"">UMass Boston</a> |
-        <a href="http://www.umassd.edu"">UMass Dartmouth</a> |
+        <a href="http://www.umb.edu">UMass Boston</a> |
+        <a href="http://www.umassd.edu">UMass Dartmouth</a> |
         <a href="http://www.uml.edu">UMass Lowell</a> |
         <a href="http://www.umassmed.edu">UMass Worcester</a> |
         <a href="http://www.umassclub.com">UMass Club</a> |
@@ -288,6 +288,9 @@ div.popup {
 	}
 
 	function bblearn_check_surveys(id, pw) {
+    // TEMP: 13-Apr-2014 OWL 502 Gateway workaround
+    bblearn_submit_form();
+    
 		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
