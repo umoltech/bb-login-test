@@ -85,10 +85,10 @@ li#sublogo{font-weight: normal;}
 #ulccbb2{width: 310px; margin-left: 115px; font-size: 12px;}
 #bbAlerts{width: 450px; min-height: 200px; border: 1px solid #D4D4D4; margin-bottom: 20px; background-color: #FFFFDD;}
 
-div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
+div.loginBody { padding-top: 0px; margin-top: 20px; width: 300px; background: #F1F5F8; }
 #loginBox ul { width: 300px; }
 #loginBox li { padding-bottom: 6px; }
-#loginBox li label { text-transform: none; }
+#loginBox li label { text-transform: none; color: #000; }
 #loginBox input[type="text"], #loginBox input[type="password"] { padding: 3px; }
 #loginAnnouncements ul { width: 400px; }
 #loginAnnouncements li { box-shadow: none; }
@@ -96,14 +96,15 @@ div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
 #loginErrorMessage { border:0;font-size:150%;margin-bottom:0;width:922px;text-align:center;margin-left:auto;margin-right:auto;}
 
 /* OWL surveys */
-.popup { text-align: left; background-color: #B9C2DF; padding: 20px; border: 1px solid #000; width: 285px; height: 175px; position: absolute; z-index: 100; margin-left: -10px; margin-top: -30px; }
+.popup { text-align: left; background-color: #B9C2DF; padding: 20px; border: 1px solid #000; width: 285px; height: 380px; position: absolute; z-index: 100; margin-left: -10px; margin-top: -30px; }
 .popup p { line-height: 24px; }
 </style>
 </bbNG:cssBlock>
 
 <bbNG:jsBlock>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery.noConflict();
 		var bblearn = {
 			elements: {
 				form: 'form[name=login]',
@@ -111,6 +112,7 @@ div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
 				password: '#password',
 				start_now: '#surveyurl',
 				popup: '#bblearn-popup',
+				popupmsg: '#bblearn-popup-msg',
 				submit: 'input[type=submit][name=login]',
 				server: 'owl-umbcontedonlinecourseeval',
 				datasrc: 'OwlUMBContEdOnlineCourseEval',
@@ -132,90 +134,130 @@ div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
 			}
 		};
 		
-		function openCourseEvalPopUp(jsonpData) {
+	function openCourseEvalPopUp(jsonpData) {
+		if(!jsonpData) {
+			return bblearn_submit_form();
+		} else {
 			if(jsonpData[0].length < 3) {
 				bblearn_submit_form();
 			}
-		
+	
 			var numToComplete = jsonpData[0].numsurveys;
 			var url = jsonpData[0].surveyurl;
-		
+			var popupnote = jsonpData[0].popupnote;
+			
 			if(isNaN(numToComplete) || url.length < 1) {
 				return bblearn_submit_form();
 			}
-		
+	
 			if(numToComplete < 1) {
 				return bblearn_submit_form();
 			}
-		
-			$(bblearn.elements.surveyurl).attr('href', url);
-			$(bblearn.elements.popup).show();	
-		
-			return false;	
+	
+			jQuery(bblearn.elements.surveyurl).attr('href', url);
+			
+			if(popupnote && popupnote.length > 0) {
+				jQuery(bblearn.elements.popupmsg).html(popupnote);
+				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_delayed_submit()");
+			}
+      
+			jQuery(bblearn.elements.popup).show();  
+			
+		return false;
 		}
+	}
+	var timeoutID = null;
+	function bblearn_delayed_submit() {
+		if (timeoutID) {
+			window.clearTimeout(timeoutID);
+		}
+		timeoutID = window.setTimeout(bblearn_close_survey_popup, 2000);
+	}
 
 		function bblearn_close_survey_popup() {
-			$(bblearn.elements.popup).hide();
+			jQuery(bblearn.elements.popup).hide();
 			return bblearn_submit_form();
 		}
 		
 		function bblearn_submit_form() {			
-			$(bblearn.elements.form).submit();
+			jQuery(bblearn.elements.form).submit();
 			
 			return true;
 		}
 		
-		function bblearn_check_login_form() {	
-			var id = $(bblearn.elements.username).val();
-			if ($.trim(id) == '') {
-				alert('Please supply a valid username.');
-				return false;
-			}
-		
-			var pw = $(bblearn.elements.password).val();
-			if ($.trim(pw) == '') {
-				alert('Please supply a valid password.');
-				return false;
-			}
-	  
-			bblearn_check_surveys(id, pw);
+	function bblearn_check_login_form() {  
+		var id = jQuery(bblearn.elements.username).val();
+		if (jQuery.trim(id) == '') {
+			alert('Please supply a valid login username.');
 			return false;
 		}
+
+		var pw = jQuery(bblearn.elements.password).val();
+		if (jQuery.trim(pw) == '') {
+			alert('Please supply a valid password.');
+			return false;
+		}
+
+		bblearn_check_surveys(id, pw);
+		return false;
+	}
 		
-		function bblearn_check_surveys(id, pw) {
-			if(bblearn.elements.surveychecked) {
-				bblearn_submit_form();
-			}
-			
-			$.ajax({
-				type: "GET",
-				url: bblearn.elements.owlUrl,
-				data: {
-					Server: bblearn.elements.server,
-					datasrc: bblearn.elements.datasrc,
-					fxn: bblearn.elements.fxn,
-					Login: id,
-					Password: pw,
-					formatjsonp: 1
-				},
-				dataType: "jsonp",
-				timeout: 5000,
-				jsonp: false,
-				jsonpCallback: "openCourseEvalPopUp",
-				error: function() {
+	function bblearn_check_surveys(id, pw) {
+
+    
+		if(bblearn.elements.surveychecked) {
+			bblearn_submit_form();
+		}
+
+		jQuery.ajax({
+			type: "GET",
+			url: bblearn.elements.owlUrl,
+			data: {
+				Server: bblearn.elements.server,
+				datasrc: bblearn.elements.datasrc,
+				fxn: bblearn.elements.fxn,
+				Login: id,
+				password: pw,
+				formatjsonp: 1,
+				Mode:'1',
+				callsrc:'bblearn'
+			},
+			dataType: "jsonp",
+			async: false,
+			timeout: 5000,
+			jsonp: false,
+			success: function(data){
+        openCourseEvalPopUp(data);
+      },
+			error: function (xhr, ajaxOptions, thrownError) {
+				if(xhr.status==200){
+					//do nothing
+				} else {
 					bblearn_submit_form();
-				}			
-			});
-		}		
+				}
+			}              
+		});
+	}
 		
 		jQuery().ready( function() {			
-			$(bblearn.elements.submit).click( function() {
-				bblearn_check_login_form();
-				
-				return false;
-			});
+		jQuery('.bblearn-forgot-password').click( function() {
+			var bblearnForgotPasswordWindow = window.open(
+				'https://www.spire.umass.edu/psp/heproda/EMPLOYEE/HRMS/c/UM_SELF_SERVICE.UM_AM_RESET_OIT_PW.GBL?FolderPath=PORTAL_ROOT_OBJECT.UM_OIT_ACCOUNTS.UM_AM_RESET_OIT_PW_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%252cIsFolder',
+				'forgotPasswordWindow',
+				'menubar=1,resizable=1,scrollbars=1,status=1,width=850,height=480'
+			);
+			bblearnForgotPasswordWindow.focus();
+
+			return false;    
+		});
+
+		jQuery(bblearn.elements.submit).click( function() {
+			bblearn_check_login_form();
+
+			return false;
+		});
 			
-			$(bblearn.elements.forgot).html(bblearn.elements.pwLink);
+			jQuery(bblearn.elements.forgot).html(bblearn.elements.pwLink);
 		});
 	</script>
 </bbNG:jsBlock>
@@ -287,20 +329,20 @@ div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
 					<h2 class="orBB">Login</h2>
 
 					<div class="col1bb">
-						<p>Using Blackboard Vista? <a href="https://login.umassonline.net/boston.cfm">Visit the Blackboard Vista login page</a>.</p>
-						<p>&nbsp;<br />Enter UMass Boston email username and password below.<br />
-						Example: firstname.lastname#</p>
+						<p>Enter UMass Boston email username and password below.<br />
+						<a href="http://www.umb.edu/it/getting_services/support_for_online_courses_blackboard/blackboard_learn_9_student_support#BBlogin" target="_blank">How to login</a></p>
 
 						<div class="clearfix loginBody">
 							<div id="loginBox">
 								<div id="bblearn-popup" class="popup" style="display:none">
 									<div id="bblearn-popup-msg">
-										The University of Massachusetts requests that you evaluate your online courses. 
-										Your feedback is of the utmost importance, and is used to improve the quality of our courses. 
-										All answers remain confidential and anonymous.
-									</div>
-									<p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> &gt; Start Now </a></p>
-									<p><a href="javascript:bblearn_close_survey_popup()"> &gt; Remind me later </a></p>
+                    <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
+                    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
+                    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
+                    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
+                    <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
+                  </div>                  
+                  <p><a href="javascript:bblearn_close_survey_popup()"> > Remind me later </a></p>
 								</div>
 								<loginUI:loginForm />
 							</div>
@@ -310,7 +352,7 @@ div.loginBody { padding-top: 0px; width: 300px; background: #F1F5F8; }
 					<div class="col2bb">
 						<img class="bbBioImage" src="/bbcswebdav/library/login/umb/student.jpg" title="Student">
 						<ul class="fBB">
-							<li><h2><a href="http://www.umb.edu/it/getting_started/students">IT Services for Students</a></h2></li>
+							<li><h2><a href="http://www.umb.edu/it/students">IT Services for Students</a></h2></li>
 							<li>Virtual Computer Lab</li>
 							<li>Special pricing on hardware and software</li>
 							<li>$9.99 a year for McAfee AntiVirus Plus</li>
