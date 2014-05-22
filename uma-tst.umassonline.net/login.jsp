@@ -208,7 +208,9 @@ div.popup {
 		},
 		prefix: 'uma_'
 	};
-  
+    
+        var courseevalavailable = false;
+	
 	function openCourseEvalPopUp(jsonpData) {
 		if(!jsonpData) {
 			return bblearn_submit_form();
@@ -235,7 +237,9 @@ div.popup {
 				jQuery(bblearn.elements.popupmsg).html(popupnote);
 				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_delayed_submit()");
 			}
-      
+			
+			courseevalavailable = true;
+			
 			jQuery(bblearn.elements.popup).show();  
 			
 		return false;
@@ -248,6 +252,22 @@ div.popup {
 			window.clearTimeout(timeoutID);
 		}
 		timeoutID = window.setTimeout(bblearn_close_survey_popup, 2000);
+	}
+	
+	var timeoutID2 = null;
+	
+	function bblearn_check_error_and_submit() {
+	  if(timeoutID2) {
+		 window.clearTimeout(timeoutID2);
+	  }
+	  timeoutID2 = window.setTimeout(bblearn_submit_on_error, 3000);
+	}
+    
+	
+	function bblearn_submit_on_error() {
+		if(courseevalavailable==false) {
+	  	  return bblearn_submit_form();	
+		}
 	}
 
 	function bblearn_close_survey_popup() {
@@ -284,12 +304,13 @@ div.popup {
 		}
 
 		bblearn_check_surveys(id, pw);
+		
+		bblearn_check_error_and_submit();
+		
 		return false;
 	}
 
 	function bblearn_check_surveys(id, pw) {
-    // TEMP: 13-Apr-2014 OWL 502 Gateway workaround
-    bblearn_submit_form();
     
 		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
@@ -313,8 +334,8 @@ div.popup {
 			timeout: 5000,
 			jsonp: false,
 			success: function(data){
-        openCourseEvalPopUp(data);
-      },
+				openCourseEvalPopUp(data);
+			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				if(xhr.status==200){
 					//do nothing
