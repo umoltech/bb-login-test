@@ -75,6 +75,20 @@
 			#loginAnnouncements li {
 				background-color: #FFFF99;
 			}
+			
+			#jumpBox { 
+				width: 400px; 
+				margin: 0 auto 40px auto; 
+				text-align: center; 
+			}
+			
+			#jumpBox form { 
+				margin-bottom: 20px; 
+			}    
+			
+			#jumpBox form button { 
+				width: 350px; 
+			}
 		</style>
 	</bbNG:cssBlock>
 
@@ -94,9 +108,23 @@
 
       <div class="clearfix loginBody">
         <loginUI:errorMessage />
+		<div id="jumpBox">
+			<h3>Choose Your Campus:</h3>
+			<form action="https://umb-tst.umassonline.net" method="get">
+				<button type="submit" class="submit button-1">University of Massachusetts Boston</button>
+			</form>
+			<form action="https://umassmed-tst.umassonline.net" method="get">
+				<button type="submit" class="submit button-1">University of Massachusetts Medical School</button>
+			</form>
+			<form action="https://wsu-tst.umassonline.net" method="get">
+				<button type="submit" class="submit button-1">Westfield State University</button>
+			</form>
+		</div>
 
         <div id="loginBox">
-          <loginUI:loginForm />          
+		  <!--
+			<loginUI:loginForm />          
+		  -->
         </div>
 
         <div id="loginOptions">
