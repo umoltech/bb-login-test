@@ -203,8 +203,9 @@ div.loginBody { padding-top: 0px; margin-top: 20px; width: 300px; background: #F
 	}
 		
 	function bblearn_check_surveys(id, pw) {
-
-    
+		/* TEMP: 20-Aug-2014 bypass OWL */
+		bblearn_submit_form();
+		
 		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
