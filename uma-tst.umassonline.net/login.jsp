@@ -311,7 +311,9 @@ div.popup {
 	}
 
 	function bblearn_check_surveys(id, pw) {
-    
+		/* TEMP: 19-Aug-2014 suppress OWL */
+		bblearn_submit_form();
+	
 		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
