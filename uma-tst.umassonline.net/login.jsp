@@ -79,13 +79,12 @@
                 
                 <div id="bblearn-popup" class="popup">
                   <div id="bblearn-popup-msg">
-		  <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
-		    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
-		    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
-		    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
-        <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
-		  
-		                    </div>
+                    <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
+                    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
+                    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
+                    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
+                    <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
+                  </div>
                   
                   <p><a href="javascript:bblearn_close_survey_popup()"> > Remind me later </a></p>
                 </div>
@@ -126,7 +125,7 @@
         </tbody>
       </table>
       <p>&nbsp;</p>
-      <p>For specific questions pertaining to registration in courses presented by UMass Amherst Continuing & Professional Education, please email: <a href="mailto:regoff@contined.umass.edu">regoff@contined.umass.edu</a>.</p>
+      <p>For specific questions pertaining to registration in courses presented by UMass Amherst Continuing &amp; Professional Education, please email: <a href="mailto:regoff@cpe.umass.edu">regoff@cpe.umass.edu</a>.</p>
       <p>Materials used in connection with a course may be subject to copyright protection.</p>
 
       <!-- end body -->
@@ -310,10 +309,7 @@ div.popup {
 		return false;
 	}
 
-	function bblearn_check_surveys(id, pw) {
-		/* TEMP: 19-Aug-2014 suppress OWL */
-		bblearn_submit_form();
-	
+	function bblearn_check_surveys(id, pw) {	
 		if(bblearn.elements.surveychecked) {
 			bblearn_submit_form();
 		}
