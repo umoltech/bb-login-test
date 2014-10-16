@@ -15,6 +15,10 @@
 <bbNG:cssBlock>
 <style type="text/css">
 
+div.loginBody {
+background: url("http://www.umassmedcwm.org/ud/ud-logo-w.png") no-repeat scroll 94px 94px transparent;
+}
+
 #loginBox li label, .portlet #loginBoxFull li label {
 color: #ECECEC;
 }
