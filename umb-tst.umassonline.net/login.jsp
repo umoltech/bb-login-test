@@ -90,8 +90,10 @@ div.loginBody { padding-top: 0px; margin-top: 20px; width: 300px; background: #F
 #loginBox li { padding-bottom: 6px; }
 #loginBox li label { text-transform: none; color: #000; }
 #loginBox input[type="text"], #loginBox input[type="password"] { padding: 3px; }
-#loginAnnouncements ul { width: 400px; }
-#loginAnnouncements li { box-shadow: none; }
+#loginAnnouncements ul, .loginAnnouncements ul { width: 400px; margin: 0 auto; }
+#loginAnnouncements li, .loginAnnouncements li { box-shadow: none; }
+.loginAnnouncements ul li strong { color: #000; }
+#content .loginAnnouncements ul { padding-bottom: 0; }
 #content #loginAnnouncements p { padding-bottom: 0; }
 #loginErrorMessage { border:0;font-size:150%;margin-bottom:0;width:922px;text-align:center;margin-left:auto;margin-right:auto;}
 
@@ -342,6 +344,15 @@ div.loginBody { padding-top: 0px; margin-top: 20px; width: 300px; background: #F
 				<div id="ccbb2">
 					<div id="bbAlerts">
 						<h3 class="orBB" id="normal">Alerts</h3>
+						<div class="loginAnnouncements">
+							<ul>
+								<li><strong>Dear Faculty, please don't forget 
+								to request your courses at</strong>
+									<div><a href="http://www.umb.edu/iwantbblearn" 
+									target="_blank">http://www.umb.edu/iwantbblearn</a>!</div>
+								</li>
+							</ul>
+						</div>
 						<loginUI:systemAnnouncements maxItems="5" />
 					</div>
 					<div id="bbNews">
