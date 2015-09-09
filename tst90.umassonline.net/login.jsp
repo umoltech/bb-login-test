@@ -48,14 +48,14 @@
 			var jump_box = '';
 			
 			if (loginpages[host_name] != 'undefined') {
-				jump_box += '<h3>Choose Your Campus:</h3>';
+				jump_box += '<div class="head">Choose Your Campus:</div>';
 				
 				for (var domain in loginpages[host_name]) {
-					jump_box += '<form action="https://' + domain + '" method="get">';
-					jump_box += '<button type="submit" class="submit button-1">';
+					jump_box += '<div class="brand">';
+					jump_box += '<a href="https://' + domain + '" target="_blank">';
 					jump_box += loginpages[host_name][domain]
-					jump_box += '</button>';
-					jump_box += '</form>';
+					jump_box += '</a>';
+					jump_box += '</div>';
 				}
 				
 				jQuery('#jumpBox').html(jump_box);
@@ -105,18 +105,35 @@
 		}
 		
 		#jumpBox { 
-			width: 400px; 
+			width: 420px; 
 			margin: 0 auto 40px auto; 
 			text-align: center; 
+			border: 1px solid #999;
 		}
 		
-		#jumpBox form { 
-			margin-bottom: 20px; 
-		}    
+		#jumpBox .head {
+			padding: 10px;
+			text-align: center;
+			background-color: #ccc;
+			font-weight: bold;			
+		}
 		
-		#jumpBox form button { 
-			width: 350px; 
-			cursor: pointer;
+		#jumpBox .brand {
+			padding: 7px 10px;
+			text-align: center;
+			border-bottom: 1px solid #999;
+		}
+		
+		#jumpBox .brand:hover {
+			background-color: #eeeeee;
+		}
+		
+		#jumpBox .brand a {
+			text-decoration: none;
+		}
+		
+		#jumpBox .brand:last-child {
+			border-bottom: none;
 		}
 	</style>
 </bbNG:cssBlock>
