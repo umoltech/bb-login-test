@@ -6,21 +6,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%
-	// New location to be redirected
-	String site = new String("https://umol.umass.edu/Shibboleth.sso/Logout?return=https://uma-tst.umassonline.net");
+<% 
+	String targetElement = "bb-session-key";
+	String targetHeader = "referer";
+	String targetUserAttribute = "UserId: {unset id}";
+	String targetLocation = "https://umol.umass.edu/Shibboleth.sso/Logout?return=https://uma-tst.umassonline.net";
+	String targetReferer = "https://uma-tst.umassonline.net";
 	
-	java.util.Enumeration enu = application.getAttributeNames();
-	enu = request.getAttributeNames();
+	java.util.Enumeration enuR = request.getAttributeNames();
+	java.util.Enumeration enuH = request.getHeaderNames();
 	
-	while(enu.hasMoreElements()) {
-    String elementName=(String)enu.nextElement();
+	while(enuR.hasMoreElements()) {
+    String elementName = (String)enuR.nextElement();	
 		
-    if (elementName == "msg") {
-			Object elementValue = request.getAttribute(elementName);
-			if (elementValue != null) {
-				response.setStatus(response.SC_MOVED_TEMPORARILY);
-        response.setHeader("Location", site); 
+    if (elementName == targetElement) {		
+			Object elementValue = request.getAttribute(targetElement);
+			
+			while(enuH.hasMoreElements()) {
+				String headerName = (String)enuH.nextElement();
+				String headerValue = request.getHeader(headerName);
+				
+				if (headerName.toLowerCase().equals(targetHeader)) {
+					if (headerValue.length() > 7) {
+						if (elementValue.toString().contains(targetUserAttribute) && headerValue.contains(targetReferer)) {
+							response.setStatus(response.SC_MOVED_TEMPORARILY);
+							response.setHeader("Location", targetLocation);
+						}
+					}
+				}
 			}
 		}
 	}	
