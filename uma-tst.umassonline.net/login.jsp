@@ -6,6 +6,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%
+	// New location to be redirected
+	String site = new String("https://umol.umass.edu/Shibboleth.sso/Logout?return=https://uma-tst.umassonline.net");
+	
+	java.util.Enumeration enu = application.getAttributeNames();
+	enu = request.getAttributeNames();
+	
+	while(enu.hasMoreElements()) {
+    String elementName=(String)enu.nextElement();
+		
+    if (elementName == "msg") {
+			Object elementValue = request.getAttribute(elementName);
+			if (elementValue != null) {
+				response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site); 
+			}
+		}
+	}	
+%>
 
 <bbNG:genericPage authentication="N" wrapper="false">
 
