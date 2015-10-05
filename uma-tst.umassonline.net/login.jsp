@@ -75,51 +75,15 @@
               
               <div class="loginbox">
                 <h3>Blackboard Learn Login:</h3>
-				<loginUI:errorMessage />
+                <loginUI:errorMessage />
                 
-                <div id="bblearn-popup" class="popup">
-                  <div id="bblearn-popup-msg">
-                    <p style="font-weight:bold">Evaluate Your Course(s) and Instruction</p>
-                    <p>For at least one of your courses, the opportunity to evaluate the course and instruction is online and easier than ever!</p>
-                    <p>Your responses are completely confidential, and any results reported will remain anonymous and will in no way affect your grades.</p>
-                    <p>Your evaluation is very important and helps us improve the quality of the educational experience for all students. It only takes a few minutes, so please complete your evaluation(s) now!</p>
-                    <p><a id="bblearn-survey-url" target="_blank" onclick="javascript:bblearn_close_survey_popup()" href=""> > Start Now </a></p>
-                  </div>
-                  
-                  <p><a href="javascript:bblearn_close_survey_popup()"> > Remind me later </a></p>
-                </div>
-                        
-                <form accept-charset="UTF-8" id="bblearn-loginform" method="post">
-                  <input type="hidden" value="login" name="action" />                              
-                  <input type="hidden" value="" name="new_loc" />
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>NetID</td>
-                        <td><input type="text" id="bblearn-username" name="user_id" maxlength="100" title="Username" /></td>
-                      </tr>
-                      <tr>
-                        <td>Password</td>
-                        <td><input type="password" id="bblearn-password" name="password" maxlength="100" title="Password" /></td>
-                      </tr>
-                      <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" id="edit-submit" value="Login" alt="Login" class="sub" /></td>
-                      </tr>
-                      <tr>
-                        <td colspan="2">
-                          <p><a href="https://www.oit.umass.edu/support/accounts/understand-your-netid-password" target="_blank">About Your NetID and Password</a></p>
-                          <p><a href="https://www.oit.umass.edu/support/accounts/understand-your-netid-password#Your%20OIT%20Account%20Password" target="_blank">Forgot Your Password?</a></p>
-                          <p>Need to access Blackboard Vista? <a href="https://login.umassonline.net/amherstvista.cfm">Blackboard Vista Login</a></p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <form method="get" action="https://umol.umass.edu">
+                  <p><button type="submit">Login</button></p>
                 </form>
               </div>
             </td>
-            <td width="55%" valign="top">
-				<loginUI:systemAnnouncements maxItems="5" />
+            <td width="55%" valign="top">              
+              <loginUI:systemAnnouncements maxItems="5" />
             </td>
           </tr>
         </tbody>
@@ -133,12 +97,12 @@
     <td class="rightcol">
       <div class="block">
         <h3>Need Technical Support?</h3>
-        <p>Please visit the Help Desk for Self-Help and Contact information at:</p>
-	<p><a href="http://uma.echelp.org" target="_blank">http://uma.echelp.org</a>.</p>
+        <p>Please visit the Help Desk for Self-Help and Contact information:</p>
+        <p><a href="http://supportcenter.embanet.com/uma" target="_blank">Support Center</a></p>
       </div>
       <div class="block">
         <h3>Can't find something?</h3>
-        <a href="http://www.umassonline.net/contact-us"><img height="38" alt="UMass Online - Can't find something?" width="180" border="0" src="/bbcswebdav/library/login/uma/images/buttons/need-help.jpg" /></a>
+        <p><a href="http://www.umassonline.net/contact-us"><img height="38" alt="UMass Online - Can't find something?" width="180" border="0" src="/bbcswebdav/library/login/uma/images/buttons/need-help.jpg" /></a></p>
       </div>
     </td>
   </tr>
@@ -157,7 +121,7 @@
       <div class="footdisclaimer">
         
         This is an <a href="http://www.umassonline.net/official">official</a> page/publication of the University of Massachusetts.
-        &copy;2013 University of Massachusetts.
+        &copy;2015 University of Massachusetts.
       </div>
       <div class="footsites">
         <a href="http://www.umass.edu">UMass Amherst</a> |
@@ -188,161 +152,6 @@ div.popup {
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript">
 	jQuery.noConflict();
-	
-	var bblearn = {
-		elements: {
-			form: '#bblearn-loginform',
-			username: '#bblearn-username',
-			password: '#bblearn-password',
-			start_now: '#surveyurl',
-			popup: '#bblearn-popup',
-			popupmsg: '#bblearn-popup-msg',
-			submit: '#edit-submit',
-			server: 'owl-umolcetest',
-			datasrc: 'OwlUMOLCETest',
-			fxn: 'cevallogin',
-			surveyurl: '#bblearn-survey-url',
-			surveychecked: false,
-			owlUrl: 'https://owlstage.cs.umass.edu/owlj/servlet/OwlPreLogin'
-		},
-		prefix: 'uma_'
-	};
-    
-        var courseevalavailable = false;
-	
-	function openCourseEvalPopUp(jsonpData) {
-		if(!jsonpData) {
-			return bblearn_submit_form();
-		} else {
-			if(jsonpData[0].length < 3) {
-				bblearn_submit_form();
-			}
-	
-			var numToComplete = jsonpData[0].numsurveys;
-			var url = jsonpData[0].surveyurl;
-			var popupnote = jsonpData[0].popupnote;
-			
-			if(isNaN(numToComplete) || url.length < 1) {
-				return bblearn_submit_form();
-			}
-	
-			if(numToComplete < 1) {
-				return bblearn_submit_form();
-			}
-	
-			jQuery(bblearn.elements.surveyurl).attr('href', url);
-			
-			if(popupnote && popupnote.length > 0) {
-				jQuery(bblearn.elements.popupmsg).html(popupnote);
-				jQuery(bblearn.elements.start_now).attr("onclick","bblearn_delayed_submit()");
-			}
-			
-			courseevalavailable = true;
-			
-			jQuery(bblearn.elements.popup).show();  
-			
-		return false;
-		}
-	}
-	
-	var timeoutID = null;
-	function bblearn_delayed_submit() {
-		if (timeoutID) {
-			window.clearTimeout(timeoutID);
-		}
-		timeoutID = window.setTimeout(bblearn_close_survey_popup, 2000);
-	}
-	
-	var timeoutID2 = null;
-	
-	function bblearn_check_error_and_submit() {
-	  if(timeoutID2) {
-		 window.clearTimeout(timeoutID2);
-	  }
-	  timeoutID2 = window.setTimeout(bblearn_submit_on_error, 3000);
-	}
-    
-	
-	function bblearn_submit_on_error() {
-		if(courseevalavailable==false) {
-	  	  return bblearn_submit_form();	
-		}
-	}
-
-	function bblearn_close_survey_popup() {
-		jQuery(bblearn.elements.popup).hide();
-		
-		return bblearn_submit_form();
-	}
-  
-	function bblearn_submit_form() {
-		var bblearnUsername = jQuery(bblearn.elements.username).val();
-
-		if (bblearnUsername.substring(0, bblearn.prefix.length) != bblearn.prefix) {
-			bblearnUsername = bblearn.prefix + bblearnUsername;
-		}
-
-		jQuery(bblearn.elements.username).val(bblearnUsername);
-
-		jQuery(bblearn.elements.form).submit();
-
-		return true;
-	}
-  
-	function bblearn_check_login_form() {  
-		var id = jQuery(bblearn.elements.username).val();
-		if (jQuery.trim(id) == '') {
-			alert('Please supply a valid login ID.');
-			return false;
-		}
-
-		var pw = jQuery(bblearn.elements.password).val();
-		if (jQuery.trim(pw) == '') {
-			alert('Please supply a valid password.');
-			return false;
-		}
-
-		bblearn_check_surveys(id, pw);
-		
-		bblearn_check_error_and_submit();
-		
-		return false;
-	}
-
-	function bblearn_check_surveys(id, pw) {	
-		if(bblearn.elements.surveychecked) {
-			bblearn_submit_form();
-		}
-
-		jQuery.ajax({
-			type: "GET",
-			url: bblearn.elements.owlUrl,
-			data: {
-				Server: bblearn.elements.server,
-				datasrc: bblearn.elements.datasrc,
-				fxn: bblearn.elements.fxn,
-				Login: id,
-				password: pw,
-				formatjsonp: 1,
-				Mode:'1',
-				callsrc:'bblearn'
-			},
-			dataType: "jsonp",
-			async: false,
-			timeout: 5000,
-			jsonp: false,
-			success: function(data){
-				openCourseEvalPopUp(data);
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				if(xhr.status==200){
-					//do nothing
-				} else {
-					bblearn_submit_form();
-				}
-			}              
-		});
-	}
   
 	jQuery().ready( function() {
 		jQuery('.bblearn-forgot-password').click( function() {
@@ -354,12 +163,6 @@ div.popup {
 			bblearnForgotPasswordWindow.focus();
 
 			return false;    
-		});
-
-		jQuery(bblearn.elements.submit).click( function() {
-			bblearn_check_login_form();
-
-			return false;
 		});
 	});
 </script>
