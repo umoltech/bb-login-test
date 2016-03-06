@@ -117,7 +117,7 @@
     </div>
     <div class="uma-helpitem">
       <h3>New CPE Students</h3>
-      <p>Activate your UMass Amherst IT Account</p>
+      <p><a href="https://www.it.umass.edu/accounts/activate-your-account" target="_blank">Activate your UMass Amherst IT Account</a></p>
       <p>If you have questions about registration in UMass Amherst Continuing & Professional Education classes, email:<br>
       <a href="mailto:regoff@cpe.umass.edu">regoff@cpe.umass.edu</a></p>
     </div>
@@ -283,9 +283,6 @@ div.uma-logintitle {
 	font-family: inherit;
 	font-size: 1.15em;
 	font-weight: normal;
-	/*padding-bottom: 10px;*/
-	margin: 0 0 20px; 
-	border-bottom: 1px solid #939393;
 }	
 .uma-loginbox p {
 	font-size: .9em;
