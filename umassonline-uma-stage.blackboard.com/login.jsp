@@ -71,7 +71,6 @@
         <li><a title="" href="http://apps.umass.edu" target="_blank">Email</a></li>
         <li><a title="" href="http://www.spire.umass.edu" target="_blank">SPIRE</a></li>
         <li><a title="" href="https://moodle.umass.edu/" target="_blank">Moodle</a></li>
-        <li><a title="" href="https://uma.umassonline.net/" target="_blank">Blackboard Learn</a></li>
         <li><a title="" href="https://udrive.oit.umass.edu/" target="_blank">UDrive</a></td>
         <li class="last"><a title="" href="http://umass.edu/peoplefinder/" target="_blank">People Finder</a></li>        
     </ul>
