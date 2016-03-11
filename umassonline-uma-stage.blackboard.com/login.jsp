@@ -91,7 +91,7 @@
         <h2>Login to Blackboard Learn</h2>  
       </div>
       <form method="get" action="https://umol.umass.edu">
-        <p><button type="submit">Log in with NetID</button></p>
+        <p><button type="submit" title="Log in with NetID" name="Login" value="Login">Log in with NetID</button></p>
       </form>                    
       <p>You must have an active UMass Amherst <a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Your%20IT%20Account%20Password" target="_blank">NetID</a> to log in.</p>
       <p><a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Your%20IT%20Account%20Password" target="_blank">Forgot Your Password?</a></p>            
