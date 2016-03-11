@@ -134,8 +134,8 @@
     <div class="footlinks">
       <p><a href="http://www.umassonline.net/copyright">Copyright Compliance</a> |
       <a href="http://www.umassonline.net/privacy-policy">Privacy Policy</a> |
-      <a href="http://www.umassonline.net/technical-support-and-requirements">Site Requirements</a> |
-      <a href="http://www.umassonline.net/contact-us">Contact Us</a></p>
+      <a href="https://en-us.help.blackboard.com/Learn/9.1_2014_04/Administrator/020_Browser_Support/Browser_Checker">Site Requirements</a> |
+      <a href="http://www.umassulearn.net/about">Contact Us</a></p>
     </div>
         
     <div class="footdisclaimer">        
