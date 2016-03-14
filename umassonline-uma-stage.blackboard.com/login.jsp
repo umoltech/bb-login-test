@@ -93,10 +93,10 @@
       <form method="get" action="https://umol.umass.edu">
         <p><button type="submit" title="Log in with NetID" name="Login" value="Login">Log in with NetID</button></p>
       </form>                    
-      <p>You must have an active UMass Amherst <a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Your%20IT%20Account%20Password" target="_blank">NetID</a> to log in.</p>
-      <p><a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Your%20IT%20Account%20Password" target="_blank">Forgot Your Password?</a></p>            
+      <p>You must have an active UMass Amherst <a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Your%20NetID" target="_blank">NetID</a> to log in.</p>
+      <p><a href="https://www.it.umass.edu/support/accounts/understand-your-netid-password#Forgot%20your%20password?" target="_blank">Forgot Your Password?</a></p>            
     </div>
-    <p><a href="http://www.umassulearn.net/" target="_blank">UMass Amherst Continuing &amp; Professional Education</a> presents online courses on the Blackboard Learn learning management system through <a href = "http://www.umassonline.net/" target="_blank">UMassOnline</a>.</p>     
+    <p><a href="http://www.umassulearn.net/" target="_blank">UMass Amherst Continuing &amp; Professional Education</a> presents online courses on the Blackboard Learn learning management system through <a href="http://www.umassonline.net" target="_blank">UMassOnline</a>.</p>     
   </section>
   
   <section id="middle">
@@ -134,7 +134,7 @@
     <div class="footlinks">
       <p><a href="http://www.umassonline.net/copyright">Copyright Compliance</a> |
       <a href="http://www.umassonline.net/privacy-policy">Privacy Policy</a> |
-      <a href="https://en-us.help.blackboard.com/Learn/9.1_2014_04/Administrator/020_Browser_Support/Browser_Checker">Site Requirements</a> |
+      <a href="https://en-us.help.blackboard.com/Learn/9.1_2014_04/Student/015_Browser_Support/Browser_Checker">Site Requirements</a> |
       <a href="http://www.umassulearn.net/about">Contact Us</a></p>
     </div>
         
