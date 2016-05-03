@@ -154,8 +154,8 @@
           <a href="https://umassmed.edu" target="_blank">UMass Medical School</a>
           <a href="https://umassmed.edu/it/services/academic-computing/blackboard-learn/" target="_blank">BB Learn Resources</a>
           <a href="https://i.umassmed.edu/events/istraining_events.aspx?pid=80" target="_blank">Training (Login Required)</a>
-          <a href="https://umassmed.edu/it/services/academic-computing/blackboard-learn/" target="_blank">Academic Technology</a>
-          <a href="https://umassmed.edu/et/security/" target="_blank">IT Security</a>
+          <a href="https://umassmed.edu/it/services/academic-computing/" target="_blank">Academic Technology</a>
+          <a href="https://umassmed.edu/it/security/" target="_blank">IT Security</a>
         </div>
         
         <div class="loginSplash"><img src="/bbcswebdav/library/login/umw/campus-image.jpg" /></div>
