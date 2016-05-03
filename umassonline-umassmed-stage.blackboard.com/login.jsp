@@ -88,11 +88,11 @@
     width: 95%;
   }
   div.loginBody div.loginCols .loginFormBubble ul li { margin-bottom: 15px; }
-  div.loginBody div.loginCols .loginFormBubble #entry-login { background-color: #ff9b22; color: #fff; display: block; margin: 0 auto; border: 4px solid #17375E; }
+  /* div.loginBody div.loginCols .loginFormBubble #entry-login { background-color: #ff9b22; color: #fff; display: block; margin: 0 auto; border: 4px solid #17375E; } */
   div.loginBody div.loginCols .loginFormBubble span.forgot { display: block; margin: 0 auto; text-align: center; }
   div.loginBody div.loginCols .loginFormBubble span.forgot a { border-bottom: none; color: #FFF; font-weight: bold; }
   
-  div.loginBody div.loginCols a.btn { border: 1px solid #000; border-radius: 5px; background-color: #FF9B22; color: #003399; font-weight: bold; display: block; text-align: center; padding: 10px; }
+  div.loginBody div.loginCols .loginFormBubble #entry-login, div.loginBody div.loginCols a.btn { cursor: pointer; border: 1px solid #000; border-radius: 5px; background-color: #FF9B22; color: #003399; font-weight: bold; display: block; text-align: center; padding: 10px; margin: 0 auto; }
   div.loginBody div.loginCols .mission { padding: 0 20px; font-size: 85%; }
   
   div#loginAnnouncements { margin: 0; padding: 0; }
@@ -101,7 +101,7 @@
   div#loginAnnouncements ul li::before, div#loginAnnouncements ul li::after { box-shadow: none; }
   div#loginAnnouncements ul li strong:first-child { font-size: 100%; font-family: inherit; }
 
-  div.loginBody div.loginFooter { border: 1px solid #000; padding: 10px; margin-top: 20px; text-align: center; }
+  div.loginBody div.loginFooter { padding: 10px; margin-top: 20px; text-align: center; }
   div.loginBody div.loginFooter .disclaimer { margin-bottom: 10px; }
   div.loginBody div.loginFooter .social { margin: 0; padding: 0; }
   div.loginBody div.loginFooter .social span { margin: 0; padding: 0; }
@@ -169,15 +169,11 @@
               <loginUI:loginForm loginText="Submit" forgotPasswordText="Password Reset" />
             </div>
             <div class="mission">
-              <p>Mission of the University of Massachusetts Medical School is to advance the 
+              <p>The mission of the University of Massachusetts Medical School is to advance the 
               health and well-being of the people of the Commonwealth and the world through 
               pioneering advances in education, research and health care delivery with clinical 
               partner UMass Memorial Health Care, the largest health care provider in Central 
               Massachusetts.</p>
-              <p>UMMS was founded in 1962 to provide affordable, high-quality medical education 
-              to state residents and to increase the number of primary care physicians practicing 
-              in underserved areas of the state. Consistently ranked by U.S.News &amp; World Report 
-              as one of the leading medical schools in the nation for primary care education.</p>
             </div>
           </div>
           <div class="col_4 orange">
