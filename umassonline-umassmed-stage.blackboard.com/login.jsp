@@ -126,6 +126,28 @@
 <link rel="stylesheet" type="text/css" href="/bbcswebdav/library/login/umw/css/flexgrid.css" />
 </bbNG:cssBlock>
 
+<bbNG:jsBlock>
+  <script type="text/javascript">
+    function loadLoginPage() {
+      if (top != self) {
+        top.location.replace(self.location.href);
+      }
+      
+      if(document.forms.login.user_id != undefined) {
+        document.forms.login.user_id.focus();
+      }
+      
+      setTimeout("triggerScreenreaderAlert()", 500);
+    }
+
+    function triggerScreenreaderAlert() {
+    	if (document.getElementById('loginErrorMessage')) {
+    	  $('loginErrorMessage').update($('loginErrorMessage').innerHTML);
+  	  }
+    }
+  </script>
+</bbNG:jsBlock>
+
 <div id="loginPageContainer">
   <div id="loginPane">
 
@@ -152,7 +174,7 @@
         </div>
         <div class="loginNav">
           <a href="https://umassmed.edu" target="_blank">UMass Medical School</a>
-          <a href="https://umassmed.edu/it/services/academic-computing/blackboard-learn/" target="_blank">BB Learn Resources</a>
+          <a href="https://umassmed.edu/it/services/academic-computing/blackboard-learn/" target="_blank">Bb Learn Resources</a>
           <a href="https://i.umassmed.edu/events/istraining_events.aspx?pid=80" target="_blank">Training (Login Required)</a>
           <a href="https://umassmed.edu/it/services/academic-computing/" target="_blank">Academic Technology</a>
           <a href="https://umassmed.edu/it/security/" target="_blank">IT Security</a>
@@ -186,7 +208,7 @@
             <p>Call 508-856-8643 or email the UMMS Help Desk. Expect to receive a response within 24 hours.</p>
             <p>Weekends, Holidays and After Hours</p>
             <p>Call 1-855-789-7056 or click the Online Support button below to submit a ticket or initiate a real-time chat.</p>
-            <p><a class="btn" href="https://umw.echelp.org/" target="_blank">Online Support</a></p>
+            <p><a class="btn" href="http://umw.echelp.org" target="_blank">Online Support</a></p>
           </div>
         </div>	  
         <div class="loginFooter">
