@@ -41,14 +41,23 @@
 	.form {background: #f9f9f9; padding:18px; border-top:1px solid #ccc;border-right:1px solid #ccc;}
 	#loginFormList li {list-style:none;}
 	#loginFormList li label {display:block;}
-	#loginAnnouncements {padding:18px;  border-left: 1px solid #ccc; border-right: 1px solid #ccc; background:#f9f9f9;}
+	#loginAnnouncements {padding:18px; }
 	#loginAnnouncements ul li {list-style:none; margin-left:-24px;}
-	#entry-login.button.expand {margin-top:18px; padding: .75em 2.2em; font-size:1.3em; background:#005a8b; color: #fff;font-weight:600; min-width:160px; border-radius:0; border:1px solid #005a8b;}
+	#entry-login.button.expand {margin-top:18px; padding: .75em 4em; font-size:1.3em; background:#005a8b; color: #fff;font-weight:600; min-width:160px; border-radius:0; border:2px solid #005a8b;}
+	#entry-login.button.expand:hover {background:#fff; border:2px solid #005a8b; color:#005a8b;}
+	#entry-login.button.expand:visited {background: #fff;  border:2px solid #005a8b; color:#005a8b;}
 	.gethelp, .academic_calendar {padding: 18px;}
-	.academic_calendar {border-right: 1px solid #ccc; }
+	.academic_calendar {border-left: 1px solid #ccc; border-right: 1px solid #ccc; min-height:450px;}
 	.gethelp ul li, .academic_calendar ul li {list-style:none; margin-left:-24px;}
 	.hideoff {display: none;}
 	em.announcementDate {display: block;}
+	#loginErrorMessage {
+		background-color: #f00;
+		color: #fff;
+		font-weight: bold;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
 
 	.callout {
 		height:450px;
@@ -81,10 +90,6 @@
 
 	.blue-caption h2 a {font-size: .9em; font-weight:600;}
 
-	@media (min-width: 768px) {
-		.academic_calendar {min-height:850px;}
-	}
-
 	@media (max-width: 1024px) {
 		.callout {
 			height: 560px;
@@ -93,6 +98,11 @@
 		.blue-caption {
 			height: 40%;
 		}
+	}
+
+	@media (max-width:768px) {
+		#loginAnnouncements {border-bottom: 1px solid #ccc;}
+		.academic_calendar {border-bottom: 1px solid #ccc;}
 	}
 
 </style>
@@ -146,6 +156,8 @@
 					<p>Enter UMass Boston email username and password below.<br />
 					<a href="http://www.umb.edu/it/getting_services/support_for_online_courses_blackboard/blackboard_learn_9_student_support#BBlogin" target="_blank">How to login</a></p>
 					<div class="clearfix loginBody">
+						<loginUI:errorMessage />
+
 						<div id="loginBox">
 							<loginUI:loginForm loginText="Log In" />
 		 				</div>
@@ -162,7 +174,7 @@
 
 		</div>
 
-		<div class="units-row  units-split end" style="border-top: 2px solid #a85612;  border-right:1px solid #ccc;">
+		<div class="units-row  units-split end" style="border-top: 2px solid #a85612; border-left: 1px solid #ccc;  border-right:1px solid #ccc;">
 			<div class="unit-33 " >
 				<loginUI:systemAnnouncements maxItems="5" />
 			</div>
@@ -176,11 +188,9 @@
 						<li>Your course may not be available before the official listed course start date.</li>						
 					</ul>
 					<hr>
-					<h3 >Bb Student App</h3>
+					<h3 >Blackboard App</h3>
 					<ul class="unstyled">
-						<li><b>Blackboard Mobile Learn</b></li>
-						<li><img src="/bbcswebdav/library/login/umb/BbStudent-sm.png"  style="float:left; margin-right:12px; "></li>
-						<li><a href="http://www.blackboard.com/mobile-learning/bbstudent.aspx" target="_blank">Learn how to access your online course through your mobile device!</a></li>
+						<li><a href="http://www.blackboard.com/mobile-learning/bbstudent.aspx" target="_blank">Access your online course through your mobile device!</a></li>
 					</ul>
 				</div>
 			</div>
