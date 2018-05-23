@@ -85,7 +85,7 @@
   </div>
   <!-- End page header -->
   <!-- Responsive 3 columns -->  
-  <section id="content">
+  <section id="contentLeft">
     <div class="uma-loginbox">
       <div class="uma-logintitle">
         <h2>Login to Blackboard Learn</h2>  
@@ -254,15 +254,15 @@ div.header-title {
 	font-size: 1.25em; 
 	padding: 8px 0px 20px 20px;
 }
-#content {
+#contentLeft {
 	width: 290px;
 	float: left;
 	padding: 5px 15px;
 }
-#content img {
+#contentLeft img {
 	padding: 12px 0;
 }
-#content p {
+#contentLeft p {
 	font-size: .9em;
 }
 div.uma-loginbox {
@@ -462,7 +462,7 @@ MEDIA QUERIES
 	#pagewrap {
 		width: 94%;
 	}
-	#content {
+	#contentLeft {
 		width: 41%;
 		padding: 1% 4%;
 	}
@@ -488,7 +488,7 @@ MEDIA QUERIES
 /* for 700px or less */
 @media screen and (max-width: 600px) {
 
-	#content {
+	#contentLeft {
 		width: auto;
 		float: none;
 	}
@@ -520,7 +520,7 @@ MEDIA QUERIES
 }
 
 
-#content, #middle, #sidebar {
+#contentLeft, #middle, #sidebar {
 	margin-bottom: 0px;
 }
 footer {
