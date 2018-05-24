@@ -46,7 +46,7 @@
 <loginUI:errorMessage />
  
 <div id="pagewrap">
-  <! -- Begin top banner -->
+  <!-- Begin top banner -->
   <div class="top">
     <div id="logo">
       <a href="http://www.umass.edu/" title="Home" rel="home" target="_blank"><img src="/bbcswebdav/library/login/uma/images/template/UMwordmark.png" width="204" height="26" alt="UMass Amherst"/></a>
@@ -101,9 +101,7 @@
     <!-- placeholder content -->
     <h3>News & Announcements</h3>
     
-    <div id="loginAnnouncements">
-      <h3>System Announcements</h3>
-      <loginUI:systemAnnouncements maxItems="5" />
+    <loginUI:systemAnnouncements maxItems="5" />
     <!-- End placeholder content -->
   </section>
 
