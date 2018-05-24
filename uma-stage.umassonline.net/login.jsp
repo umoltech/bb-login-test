@@ -533,15 +533,15 @@ footer {
 <bbNG:jsBlock>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">  
-  jQuery.noConflict();
+  var umolJQ = jQuery.noConflict();
   
-  jQuery(document).ready( function() {
+  umolJQ(document).ready( function() {
   
-    var ssoLoginUrl = jQuery('#loginRedirectProviderList').children('li:first-child').children('a:first-child').attr('href');
+    var ssoLoginUrl = umolJQ('#loginRedirectProviderList').children('li:first-child').children('a:first-child').attr('href');
     
-    jQuery('#login-submit').attr('href', ssoLoginUrl);
+    umolJQ('#login-submit').attr('href', ssoLoginUrl);
     
-    jQuery('#hiddenLoginContainer').remove();
+    umolJQ('#hiddenLoginContainer').remove();
     
   });
 </script>
