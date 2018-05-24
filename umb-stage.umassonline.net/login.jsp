@@ -6,13 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:set var="productName" value="${ loginUI:getProductName() }" />
-
-<bbNG:genericPage authentication="N" wrapper="N" skipCoreCss="true" onLoad="" bodyClass="ci-page">
-
-<%@ include file="/webapis/ui/cookie-disclosure-login.jspf"%>
-
-
+<bbNG:genericPage authentication="N" wrapper="N" skipCoreCss="true" bodyClass="ci-page">
 
 <bbNG:cssBlock>
 <meta charset="utf-8">
