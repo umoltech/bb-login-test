@@ -155,7 +155,7 @@
 				<div >
 					<p>Enter UMass Boston email username and password below.<br />
 					<a href="https://www.umb.edu/it/getting_services/support_for_online_courses_blackboard/blackboard_learn_9_student_support#BBlogin" target="_blank">How to login</a></p>
-					<div class="clearfix loginBody">
+					<div class="clearfix loginBodyNew">
 						<loginUI:errorMessage />
 
 						<div id="loginBox">
