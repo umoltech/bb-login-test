@@ -52,7 +52,7 @@
 	.hideoff {display: none;}
 	em.announcementDate {display: block;}
 	#loginErrorMessage {
-		background-color: #f00;
+		background-color: #d31011;
 		color: #fff;
 		font-weight: bold;
 		padding: 10px;
@@ -111,7 +111,7 @@
 <bbNG:jsBlock>
 	<script src="https://use.fontawesome.com/72fbe63326.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://www.umb.edu/assets/kube/js/kube.js?t=1503588416"></script>
+	<!--script src="https://www.umb.edu/assets/kube/js/kube.js?t=1503588416"></script-->
 </bbNG:jsBlock>
 
 <div class="global-nav blue">
@@ -154,7 +154,7 @@
 			<div  class="unit-50 form"  >
 				<div >
 					<p>Enter UMass Boston email username and password below.<br />
-					<a href="http://www.umb.edu/it/getting_services/support_for_online_courses_blackboard/blackboard_learn_9_student_support#BBlogin" target="_blank">How to login</a></p>
+					<a href="https://www.umb.edu/it/getting_services/support_for_online_courses_blackboard/blackboard_learn_9_student_support#BBlogin" target="_blank">How to login</a></p>
 					<div class="clearfix loginBody">
 						<loginUI:errorMessage />
 
@@ -167,8 +167,11 @@
 
 			<div class="unit-50  callout">
 				<div class=" blue-caption" >
-					<h2><a href="#">IT Services for Students</a></h2>
-					<p><a href="#">Download Microsoft Windows 10 Education Edition and Microsoft Office - Word, Excel, and PowerPoint FREE! Learn about special pricing on hardware and software, safe computing tips and more.</a></p>
+					<h2><a href="https://www.umb.edu/it/students" target="_blank">IT Services for Students</a></h2>
+					<p><a href="https://www.umb.edu/it/students" target="_blank">Download Microsoft Windows 
+          10 Education Edition and Microsoft Office - Word, Excel, and PowerPoint FREE! 
+          Learn about special pricing on hardware and software, safe computing tips 
+          and more.</a></p>
 				</div>
 			</div>
 
@@ -183,14 +186,14 @@
 				<div class="academic_calendar">
 					<h3>Academic Calendars</h3>
 					<ul class="unstyled">
-						<li><a href="http://www.umb.edu/academics/caps/credit/fall/calendar">CAPS/Online</a></li>
-						<li><a href="http://www.umb.edu/registrar/academic_calendar">Regular/On Campus</a></li>
+						<li><a href="https://www.umb.edu/academics/caps/credit/fall/calendar">CAPS/Online</a></li>
+						<li><a href="https://www.umb.edu/registrar/academic_calendar">Regular/On Campus</a></li>
 						<li>Your course may not be available before the official listed course start date.</li>						
 					</ul>
 					<hr>
 					<h3 >Blackboard App</h3>
 					<ul class="unstyled">
-						<li><a href="http://www.blackboard.com/mobile-learning/bbstudent.aspx" target="_blank">Access your online course through your mobile device!</a></li>
+						<li><a href="https://www.blackboard.com/mobile-learning/bbstudent.aspx" target="_blank">Access your online course through your mobile device!</a></li>
 					</ul>
 				</div>
 			</div>
@@ -232,6 +235,14 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-793538-8', 'umassonline.net');
 ga('send', 'pageview');
+</script>
+
+<script>
+  var umolJQ = jQuery.noConflict();
+  
+  umolJQ(document).ready( function() {
+    umolJQ('.forgot a').removeAttr('onclick').attr('href', 'https://mypassword.umb.edu').attr('target', '_blank');
+  });
 </script>
 </bbNG:jsBlock>
 </bbNG:genericPage>
