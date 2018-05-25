@@ -216,6 +216,7 @@
 				<div class="unit-100">
 					<p>&copy; 2017  University of Massachusetts Boston</p>
 					<p>100 William T. Morrissey Blvd., Boston, MA 02125 |  <a href="tel:6172875000">Tel: 617.287.5000</a></p>
+					<p><a href="https://www.umassp.edu/privacy-policy" target="_blank">Privacy Policy</a></p>
 				</div>
 			</div>
 		</div>
