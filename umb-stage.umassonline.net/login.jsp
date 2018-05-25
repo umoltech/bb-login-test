@@ -6,7 +6,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<bbNG:genericPage authentication="N" wrapper="N" skipCoreCss="true" bodyClass="ci-page">
+<bbNG:genericPage authentication="N" wrapper="N" skipCoreCss="true" bodyClass="ci-page" globalNavigation="N">
+
+<%@ include file="/webapis/ui/cookie-disclosure-login.jspf"%>
 
 <bbNG:cssBlock>
 <meta charset="utf-8">
@@ -239,4 +241,11 @@ ga('send', 'pageview');
   });
 </script>
 </bbNG:jsBlock>
+
+<div style="display:none">
+	<div id="loginBoxTwo">
+		<loginUI:loginForm loginText="Log In" />
+	</div>
+</div>
+
 </bbNG:genericPage>
