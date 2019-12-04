@@ -116,7 +116,20 @@
   .float-left { float: left; }
   .float-right { float: right; }
   .clear { clear: both; }
-  
+
+  a.ssoButton {
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #FF9B22;
+    color: #003399;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
   @media all and (max-width: 939px) {
     body { margin: 0; min-width: 400px;  }    
     #loginContainer { width: 100%; margin: 0; overflow: hidden; }
@@ -129,6 +142,20 @@
 </bbNG:cssBlock>
 
 <bbNG:jsBlock>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">  
+  var umolJQ = jQuery.noConflict();
+  
+  umolJQ(document).ready( function() {
+  
+    var ssoLoginUrl = umolJQ('#loginRedirectProviderList').children('li:first-child').children('a:first-child').attr('href');
+    
+    umolJQ('#ssoLoginButton').attr('href', ssoLoginUrl);
+    
+    umolJQ('#loginRedirectProviders').remove();
+    
+  });
+</script>
   <script type="text/javascript">
     function loadLoginPage() {
       if (top != self) {
@@ -189,7 +216,11 @@
         <div class="loginCols row">
           <div class="col_4 white">
             <div class="loginFormBubble">
-              <h3>Blackboard Learn Login</h3>
+              <h3>Login to Blackboard Learn</h3>
+              <a class="ssoButton" id="ssoLoginButton" href="#">UMMS Users Login Here</a>
+            </div>
+            <div class="loginFormBubble">
+              <h3>Non-UMMS User Login</h3>
               <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
             </div>
             <div class="mission">
