@@ -95,16 +95,25 @@
   div.loginBodyNew div.loginCols .loginFormBubble #entry-login, div.loginBodyNew div.loginCols a.btn { cursor: pointer; border: 1px solid #000; border-radius: 5px; background-color: #FF9B22; color: #003399; font-weight: bold; display: block; text-align: center; padding: 10px; margin: 0 auto; }
   div.loginBodyNew div.loginCols .mission { padding: 0 20px; font-size: 85%; }
   
-  div.loginBodyNew div.loginCols .loginFormBubble.gray { background-color: #aaa; border-color: #999; }
+  div.loginBodyNew div.loginCols .loginFormBubble.gray { 
+    background-color: #cce6ff; 
+    border-width: 0; 
+    color: #0077e6;
+  }
   div.loginBodyNew div.loginCols .loginFormBubble.gray input[type="text"], 
   div.loginBodyNew div.loginCols .loginFormBubble.gray input[type="password"] {
     background-color: #fff;
-    border: 1px solid #777;
+    border-width: 0;
+    color: #0077e6;
   }
   div.loginBodyNew div.loginCols .loginFormBubble.gray #entry-login {
-    background-color: #777;
-    border: 1px solid #333;
+    background-color: #0077e6;
+    border-width: 0;
     color: #fff;
+  }
+  div.loginBodyNew div.loginCols .loginFormBubble.gray label,
+  div.loginBodyNew div.loginCols .loginFormBubble.gray span.forgot a { 
+    color: #0077e6; 
   }
 
   div#loginAnnouncements { margin: 0; padding: 0; }
@@ -174,10 +183,6 @@
         top.location.replace(self.location.href);
       }
       
-      if(document.forms.login.user_id != undefined) {
-        document.forms.login.user_id.focus();
-      }
-      
       setTimeout("triggerScreenreaderAlert()", 500);
     }
 
@@ -231,16 +236,16 @@
               <h3>NEW!<br />Login to Blackboard Learn</h3>
               <a class="ssoButton" id="ssoLoginButton" href="#">UMMS Users Login Here</a>
             </div>
-            <div class="loginFormBubble gray">
-              <h3>Non-UMMS User Login</h3>
-              <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
-            </div>
             <div class="mission">
               <p>The mission of the University of Massachusetts Medical School is to advance the 
               health and well-being of the people of the Commonwealth and the world through 
               pioneering advances in education, research and health care delivery with clinical 
               partner UMass Memorial Health Care, the largest health care provider in Central 
               Massachusetts.</p>
+            </div>
+            <div class="loginFormBubble gray">
+              <h3>Non-UMMS User Login</h3>
+              <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
             </div>
           </div>
           <div class="col_4 orange">
