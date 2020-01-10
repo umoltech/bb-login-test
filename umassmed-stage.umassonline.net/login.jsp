@@ -151,6 +151,18 @@
     margin: 0 auto;
   }
 
+  #externalLoginButton {
+    background-color: #0077e6;
+    border-width: 0;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
   @media all and (max-width: 939px) {
     body { margin: 0; min-width: 400px;  }    
     #loginContainer { width: 100%; margin: 0; overflow: hidden; }
@@ -174,6 +186,11 @@
     umolJQ('#ssoLoginButton').attr('href', ssoLoginUrl);
     
     umolJQ('#loginRedirectProviders').remove();
+
+    umolJQ('#externalLoginButton').click( function() {
+      umolJQ(this).hide();
+      umolJQ('#externalLoginForm').show(500);      
+    });
     
   });
 </script>
@@ -233,7 +250,7 @@
         <div class="loginCols row">
           <div class="col_4 white">
             <div class="loginFormBubble">
-              <h3>NEW!<br />Login to Blackboard Learn</h3>
+              <h3>NEW!<br />Have a UMassMed Network Account?</h3>
               <a class="ssoButton" id="ssoLoginButton" href="#">UMMS Users Login Here</a>
             </div>
             <div class="mission">
@@ -243,21 +260,27 @@
               partner UMass Memorial Health Care, the largest health care provider in Central 
               Massachusetts.</p>
             </div>
-            <div class="loginFormBubble gray">
-              <h3>Non-UMMS User Login</h3>
-              <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
-            </div>
           </div>
           <div class="col_4 orange">
             <h3>News and Announcements</h3>
             <loginUI:systemAnnouncements maxItems="5" />
           </div>
-          <div class="col_4 last blue">
-            <h3>Need Help?</h3>
-            <p>Monday through Friday 7:30 AM - 5:30 PM (EST):</p>
-            <p>Call 508-856-8643 or email the <a href="mailto:helpdesk@umassmed.edu">UMMS Help Desk</a>. Expect to receive a response within 24 hours.</p>
-            <p>Weekends, Holidays and After Hours:</p>
-            <p>Call 1-855-789-7056 or visit <a href="http://umw.echelp.org" target="_blank">http://umw.echelp.org</a>.</p>
+          <div class="col_4 last">
+            <div class="loginFormBubble gray">
+              <h3>Have an External Email Address?</h3>
+              <button id="externalLoginButton">Log in Here</button>
+              <div id="externalLoginForm" style="display:none">
+                <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
+              </div>
+            </div>
+
+            <div class="blue">
+              <h3>Need Help?</h3>
+              <p>Monday through Friday 7:30 AM - 5:30 PM (EST):</p>
+              <p>Call 508-856-8643 or email the <a href="mailto:helpdesk@umassmed.edu">UMMS Help Desk</a>. Expect to receive a response within 1-3 business days.</p>
+              <p>Weekends, Holidays and After Hours:</p>
+              <p>Call 1-855-789-7056 or visit <a href="http://umw.echelp.org" target="_blank">http://umw.echelp.org</a>.</p>
+            </div>
           </div>
         </div>	  
         <div class="loginFooter">
