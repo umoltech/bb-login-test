@@ -97,7 +97,6 @@
   
   div.loginBodyNew div.loginCols .loginFormBubble.gray { 
     background-color: #cce6ff; 
-    border-width: 0; 
     color: #0077e6;
   }
   div.loginBodyNew div.loginCols .loginFormBubble.gray input[type="text"], 
@@ -253,12 +252,12 @@
               <h3>NEW!<br />Have a UMassMed Network Account?</h3>
               <a class="ssoButton" id="ssoLoginButton" href="#">UMMS Users Login Here</a>
             </div>
-            <div class="mission">
-              <p>The mission of the University of Massachusetts Medical School is to advance the 
-              health and well-being of the people of the Commonwealth and the world through 
-              pioneering advances in education, research and health care delivery with clinical 
-              partner UMass Memorial Health Care, the largest health care provider in Central 
-              Massachusetts.</p>
+            <div class="loginFormBubble gray">
+              <h3>No UMassMed Network Account?</h3>
+              <button id="externalLoginButton">Non-UMMS Users Login Here</button>
+              <div id="externalLoginForm" style="display:none">
+                <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
+              </div>
             </div>
           </div>
           <div class="col_4 orange">
@@ -266,18 +265,10 @@
             <loginUI:systemAnnouncements maxItems="5" />
           </div>
           <div class="col_4 last">
-            <div class="loginFormBubble gray">
-              <h3>Have an External Email Address?</h3>
-              <button id="externalLoginButton">Log in Here</button>
-              <div id="externalLoginForm" style="display:none">
-                <loginUI:loginForm loginText="Submit" forgotPasswordText="Need Your Password?" />
-              </div>
-            </div>
-
             <div class="blue">
               <h3>Need Help?</h3>
               <p>Monday through Friday 7:30 AM - 5:30 PM (EST):</p>
-              <p>Call 508-856-8643 or email the <a href="mailto:helpdesk@umassmed.edu">UMMS Help Desk</a>. Expect to receive a response within 1-3 business days.</p>
+              <p>Call 508-856-8643 or email the <a href="mailto:helpdesk@umassmed.edu">UMMS Help Desk</a>. Expect to receive a response within 24 hours.</p>
               <p>Weekends, Holidays and After Hours:</p>
               <p>Call 1-855-789-7056 or visit <a href="http://umw.echelp.org" target="_blank">http://umw.echelp.org</a>.</p>
             </div>
